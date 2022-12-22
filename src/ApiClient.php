@@ -2,20 +2,38 @@
 
 namespace Devrusspace\KennwortYii2;
 
-class ApiClient extends \Devrusspace\Kennwort\ApiClient
+class ApiClient extends \yii\base\Component
 {
     public $token;
     public $defaultSenderId;
 
-    private $_api;
+    private $_client;
 
-    public function __construct()
+    public function __construct($config = [])
     {
+        if (!empty($config)) {
+            \Yii::configure($this, $config);
+        }
+
         if (empty($this->token)) {
             throw new \Exception('Kennwort-email-sender token cannot be empty');
         }
+    }
 
-        parent::__construct($this->token);
+    private function getClient()
+    {
+        if (!$this->_client) {
+            $this->_client = new \Devrusspace\Kennwort\ApiClient($this->token);
+        }
+        return $this->_client;
+    }
+
+    public function  __call($method, $parameters)
+    {
+        if(method_exists($this->getClient(), $method))
+        {
+            return call_user_func_array([$this->getClient(), $method], $parameters);
+        }
     }
 
     /**
