@@ -1,0 +1,26 @@
+{
+    "name": "devrusspace/yii2-kennwort-email-sender",
+    "description": "Отправка транзакционных и тригерных e-mail сообщений с использованием шаблонов и layout в yii2 через API сервиса kennwort.ru.",
+    "keywords": ["email", "api", "mailing list", "transactional", "trigger"],
+    "homepage": "https://github.com/devrusspace/yii2-kennwort-email-sender",
+    "license": "MIT",
+    "type": "yii2-extension",
+    "require": {
+        "yiisoft/yii2": "~2.0.0",
+        "devrusspace/kennwort-email-sender" : "1.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Devrusspace\\KennwortYii2\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "devrusspace",
+            "email": "mail@devrus.space",
+            "homepage": "https://devrus.space"
+        }
+    ],
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
